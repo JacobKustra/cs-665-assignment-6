@@ -1,34 +1,70 @@
 
 | CS-665       | Software Design & Patterns |
 |--------------|----------------------------|
-| Name         | FIRST_NAME LAST_NAME       |
-| Date         | MM/DD/YYYY                 |
-| Course       | Fall / Spring / Summer     |
-| Assignment # |                            |
+| Name         | Jacob Kustra               |
+| Date         | 12/5/2023                  |
+| Course       | Fall                       |
+| Assignment # | 6                          |
 
 # Assignment Overview
-Please add a paragraph or two overviewing the objectives of the assignment.
+For assignment 6, my task was to improve my implementation of a previous assignment using refactoring. For this,
+I chose to refactor assignment 1, which did not implement any design patterns when I first made it and had flaws
+in the way it was implemented, that using what I know now, I can refactor to make it more well designed. The main goal
+of assignment 1 was creating a Fully Automatic Beverage Vending Machine that can dispense both coffees such as;
+Americano, Espresso, and Latte Macchiato, along teas such as; Black Tea, Green Tea, and Yellow Tea. Additionally,
+the user can choose to add milk or sugar as condiments to their beverage with a limit of three of each of those.
+
+# Assignment Assumptions
+I made a few assumptions about this assignment that carry over from Assignment 1. If the beverage does not already
+have a set size to it, such as the espresso shot, it will give the choice of three sizes, 8oz, 12oz or 16oz.
+From there it will ask if the user wants any condiments and if so allow up to three of each from either sugar or milk.
+Finally, it will present the beverage that is being brewed, along with how long it will take to brew with its various
+customizations. It will turn off to be energy efficient until another user wants to power it on again to use.
 
 # GitHub Repository Link:
-https://github.com/{YOUR_USERNAME}/cs-665-assignment-{ASSIGNMENT_NUMBER}
+https://github.com/JacobKustra/cs-665-assignment-6
 
-# Implementation Description 
-
+# Implementation Description
+I have implemented a main interface called the VendingMachineInterface.java which then runs
+through each part of the program from selecting which beverage type, from Coffee or Tea, to
+then the program providing options of the subcategories of beverages.
 
 For each assignment, please answer the following:
 
 - Explain the level of flexibility in your implementation, including how new object types can
-be easily added or removed in the future.
+  be easily added or removed in the future.
+  - My program is very flexible when adding new object types or subcategories. Everything is 
+  kept separate so once the change is made in the appropriate class, everything should
+  function as expected.
+
 - Discuss the simplicity and understandability of your implementation, ensuring that it is
-easy for others to read and maintain.
+  easy for others to read and maintain.
+  - My program is laid out well and everything is named in such a way that the classes are 
+  easily understandable of what is held in each one. Along with this, once someone goes
+  into the class, they will find that if there are any counterpart classes, they will all
+  be laid out in a similar way.
+
 - Describe how you have avoided duplicated code and why it is important.
+  - I was able to avoid a lot of code duplication through the use of inheritance from parent 
+  classes. For example, all the beverages have the same possible methods/modifiers so those
+  are held in the parent class beverage rather than in each individual drink types class.
+
 - If applicable, mention any design patterns you have used and explain why they were
-chosen.
+  chosen.
+  - I have refactored my assignment 1 to include two Factory Method Patterns for both creating
+  beverages and condiments. This way there is a clean and reliable way to create these
+  should there be a need to expand the menu to include more options of those in the future. The
+  customer utilizes the VendingMachineInterface.java class to interact with the machine, which
+  then uses the Initialization.java class which uses both the BeverageFactory.java and 
+  CondimentFactory.java classes. These are both used by the BeverageProduct.java and 
+  CondimentProduct.java interfaces which are implemented by the various products they create based 
+  on what the user orders.
+
 
 
 # Maven Commands
 
-We'll use Apache Maven to compile and run this project. You'll need to install Apache Maven (https://maven.apache.org/) on your system. 
+We'll use Apache Maven to compile and run this project. You'll need to install Apache Maven (https://maven.apache.org/) on your system.
 
 Apache Maven is a build automation tool and a project management tool for Java-based projects. Maven provides a standardized way to build, package, and deploy Java applications.
 
@@ -41,12 +77,11 @@ Maven also integrates with other development tools, such as IDEs and continuous 
 Maven provides a large number of plugins for various tasks, such as compiling code, running tests, generating reports, and creating JAR files. This makes it a versatile tool that can be used for many different types of Java projects.
 
 ## Compile
-Type on the command line: 
+Type on the command line:
 
 ```bash
 mvn clean compile
 ```
-
 
 
 ## JUnit Tests
@@ -66,7 +101,7 @@ mvn clean test
 ```
 
 
-## Spotbugs 
+## Spotbugs
 
 SpotBugs is a static code analysis tool for Java that detects potential bugs in your code. It is an open-source tool that can be used as a standalone application or integrated into development tools such as Eclipse, IntelliJ, and Gradle.
 
@@ -82,13 +117,13 @@ Use the following command:
 mvn spotbugs:gui 
 ```
 
-For more info see 
+For more info see
 https://spotbugs.readthedocs.io/en/latest/maven.html
 
 SpotBugs https://spotbugs.github.io/ is the spiritual successor of FindBugs.
 
 
-## Checkstyle 
+## Checkstyle
 
 Checkstyle is a development tool for checking Java source code against a set of coding standards. It is an open-source tool that can be integrated into various integrated development environments (IDEs), such as Eclipse and IntelliJ, as well as build tools like Maven and Gradle.
 
@@ -98,7 +133,7 @@ By using Checkstyle, developers can ensure that their code adheres to a consiste
 
 Checkstyle is highly configurable and can be customized to fit the needs of your team or organization. It supports a wide range of coding standards and can be integrated with other tools, such as code coverage and automated testing tools, to create a comprehensive and automated software development process.
 
-The following command will generate a report in HTML format that you can open in a web browser. 
+The following command will generate a report in HTML format that you can open in a web browser.
 
 ```bash
 mvn checkstyle:checkstyle
